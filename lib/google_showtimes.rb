@@ -4,6 +4,10 @@ require 'uri'
 
 require 'nokogiri'
 
+# Scraper for Google's movie showtimes search.
+#
+# The #for method is the only method intended to be used by client code. See its
+# documentation to get started.
 module GoogleShowtimes
   # Searches Google (google.com/movies) for movie showtimes.
   #
@@ -18,7 +22,7 @@ module GoogleShowtimes
   # of hashes. One hash has showtimes for a film at a cinema and looks like
   # this:
   #     { :cinema => { :name => 'AMC 13', :address => '1998 Broadway, ....' },
-  #       :film => { :name => 'Dark Knight', :imdb_id => '0123456' },
+  #       :film => { :name => 'Dark Knight', :imdb => '0123456' },
   #       :showtimes => [ { :time => '11:30am' },
   #                       { :time => '1:00', :href => 'site selling tickets' } ]
   #     }

@@ -4,7 +4,7 @@ require 'date'
 require 'time'
 
 class TestGoogleShowtimes < Test::Unit::TestCase
-  def test_for
+  def test_for_location
     location, results = GoogleShowtimes.for('02139')
     assert_equal 'Cambridge, MA 02139', location, 'Location'
     
@@ -12,6 +12,19 @@ class TestGoogleShowtimes < Test::Unit::TestCase
     
     assert results.any? { |r| r[:cinema][:name].index 'AMC'},
            'Results include at least one AMC theater ' + results.inspect    
+  end
+  
+  def test_for_movie
+    # Find a movie that's running.
+    location, results = GoogleShowtimes.for('02139')
+    movie_name = results.first[:film][:name]
+    
+    location, results = GoogleShowtimes.for('02139', movie_name)
+    assert_operator results.length, :>, 0, 'Showtime count'
+    
+    assert results.all? { |r| r[:film][:name].index movie_name },
+           "All results are for the specified movie (#{movie_name}) " +
+           results.inspect    
   end
 
   def mock_results_page(name)
