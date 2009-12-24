@@ -1,3 +1,9 @@
+# Scraper for Google showtime search.
+#
+# Author:: Victor Costan
+# Copyright:: Copyright (C) 2009 Victor Costan
+# License:: MIT
+
 require 'net/http'
 require 'set'
 require 'uri'

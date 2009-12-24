@@ -1,3 +1,7 @@
+# Author:: Victor Costan
+# Copyright:: Copyright (C) 2009 Victor Costan
+# License:: MIT
+
 require 'helper.rb'
 
 require 'date'

@@ -1,3 +1,9 @@
+# Rakefile for the google_showtimes gem.
+#
+# Author:: Victor Costan
+# Copyright:: Copyright (C) 2009 Victor Costan
+# License:: MIT
+
 require 'rubygems'
 require 'rake'
 
