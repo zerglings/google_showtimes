@@ -1,6 +1,9 @@
 = google_showtimes
 
-Description goes here.
+This gem retrieves movie showtimes from Google, by scraping their HTML results.
+
+Note: the code was written a long time ago and is quite ugly. On the bright
+side, I already wrote it, so it comes for free.
 
 == Note on Patches/Pull Requests
  

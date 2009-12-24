@@ -13,6 +13,9 @@ tmtags
 ## VIM
 *.swp
 
+## ECLIPSE
+.loadpath
+
 ## PROJECT::GENERAL
 coverage
 rdoc

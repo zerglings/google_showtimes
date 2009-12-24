@@ -5,11 +5,13 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "google_showtimes"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Movie showtimes from Google}
+    gem.description = %Q{Library for scraping Google's showtimes search.}
     gem.email = "costan@gmail.com"
     gem.homepage = "http://github.com/costan/google_showtimes"
     gem.authors = ["Victor Costan"]
+    gem.add_dependency 'nokogiri', '>= 1.4.1'
+    
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
