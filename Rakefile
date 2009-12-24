@@ -11,10 +11,14 @@ begin
     gem.homepage = "http://github.com/costan/google_showtimes"
     gem.authors = ["Victor Costan"]
     gem.add_dependency 'nokogiri', '>= 1.4.1'
+    gem.rubyforge_project = 'zerglings'    
     
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
-  Jeweler::GemcutterTasks.new
+  Jeweler::RubyforgeTasks.new do |rubyforge|
+    rubyforge.doc_task = "rdoc"
+  end
+
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
