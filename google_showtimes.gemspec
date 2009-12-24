@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "google_showtimes.gemspec",
      "lib/google_showtimes.rb",
      "test/fixtures/cinemas_movies.html",
      "test/fixtures/cinemas_movies_uk.html",
@@ -35,6 +36,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/costan/google_showtimes}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
+  s.rubyforge_project = %q{zerglings}
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{Movie showtimes from Google}
   s.test_files = [
