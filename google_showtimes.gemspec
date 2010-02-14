@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{google_showtimes}
-  s.version = "1.0.2"
+  s.version = "1.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = %q{2009-12-24}
+  s.date = %q{2010-02-14}
   s.description = %q{Library for scraping Google's showtimes search.}
   s.email = %q{costan@gmail.com}
   s.extra_rdoc_files = [
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
      "lib/google_showtimes.rb",
      "test/fixtures/cinemas_movies.html",
      "test/fixtures/cinemas_movies_uk.html",
+     "test/fixtures/mixed_showtime_links.html",
      "test/fixtures/movie2_cinemas.html",
      "test/fixtures/movie_cinemas.html",
      "test/helper.rb",
