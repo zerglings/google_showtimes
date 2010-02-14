@@ -78,7 +78,7 @@ class TestGoogleShowtimes < Test::Unit::TestCase
     golden1 = {
       :film => { :imdb => "0875034", :name => "Nine"},
       :cinema => { :phone =>"0871 224 4007", :name => "Odeon West End",
-                  :address =>"40 Leicester Square, London, WC2H 7LP, UK" },
+                   :address =>"40 Leicester Square, London, WC2H 7LP, UK" },
       :showtimes => %w(11:30 13:00 14:20 16:00 17:10).
           map { |time| { :time => Time.parse(time + ' UTC') } }
     }
@@ -96,8 +96,8 @@ class TestGoogleShowtimes < Test::Unit::TestCase
     golden1 = {
       :film => { :imdb => '0499549', :name => 'Avatar 3D' },
       :cinema => { :name => 'AMC Loews Harvard Square 5',
-                  :address => '10 Church Street, Cambridge, MA' },
-     :showtimes => %w(11:30 15:15 19:00 22:45).
+                   :address => '10 Church Street, Cambridge, MA' },
+      :showtimes => %w(11:30 15:15 19:00 22:45).
          map { |time| { :time => Time.parse(time + ' UTC'),
                         :href => 'http://www.fandango.com/redirect.aspx?' +
                                  'tid=AABBF&tmid=79830&date=2009-12-23+' +
@@ -126,5 +126,30 @@ class TestGoogleShowtimes < Test::Unit::TestCase
     ].each do |text, golden_result|
       assert_equal golden_result, GoogleShowtimes.cleanup_redirects(text), text
     end
+  end
+  
+  def test_mixed_showtime_links
+    results, location, next_url =
+       GoogleShowtimes.parse_results mock_results_page('mixed_showtime_links')
+
+    assert_equal 'Cambridge, MA 02139', location, 'Location'
+    assert_equal nil, next_url, 'No next URL'
+    
+    # Yes, Google can return negative IMDB IDs. Sigh.
+    golden1 = {
+      :film => { :imdb => '-1949659688', :name => "Valentine's Day" },
+      :cinema => { :name => 'AMC Loews Boston Common 19',
+                   :address => '175 Tremont Street, Boston, MA',
+                   :phone => '(888) 262-4386' },
+     :showtimes => %w(10:10 11:20 12:10 13:10 14:10).
+         map { |time | { :time => Time.parse(time + ' UTC') } } +
+                   %w(15:20 16:20 16:50 17:20 18:30 19:30 20:00 20:30 21:40 22:40 23:10 23:40).
+         map { |time| { :time => Time.parse(time + ' UTC'),
+                        :href => 'http://www.fandango.com/redirect.aspx?' +
+                                 'tid=AAPNV&tmid=81193&date=2010-02-14+' +
+                                 time + '&a=11584&source=google' } }
+    }
+
+    assert_equal golden1, results.first, 'First result (buy URLs)'    
   end
 end

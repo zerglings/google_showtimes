@@ -179,7 +179,7 @@ module GoogleShowtimes
 
     imdb = nil
     nokogiri.css('a').each do |a|
-      match_data = /imdb\.com\/title\/tt(\d*)\//.match a['href']
+      match_data = /imdb\.com\/title\/tt(\-?\d*)\//.match a['href']
       next unless match_data
       
       imdb = match_data[1]
@@ -207,12 +207,15 @@ module GoogleShowtimes
     end
     
     # Parse plaintext times.
+    plain_times = []
     nokogiri.text.split.each do |time_text|
       time_text.gsub!(/[^\d\:amp]/, '')
       next unless /\d\:\d\d/ =~ time_text
       next if time_set.include? time_text
-      times << { :time => time_text }
+      time_set << time_text
+      plain_times << { :time => time_text }
     end
+    times = plain_times + times  # Plaintext times always precede linked times.
     
     # Parse text-form time into Time objects.
     last_suffix = ''
